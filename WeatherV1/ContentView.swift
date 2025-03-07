@@ -7,15 +7,14 @@
 
 import SwiftUI
 
+/*
+ Welcome!!!!!
+ Today we will be building a weather app showcasing API handling
+ */
+
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        WeatherView(weatherStruct: weatherResponseArr[0])
     }
 }
 
