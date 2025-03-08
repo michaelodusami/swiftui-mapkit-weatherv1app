@@ -9,31 +9,27 @@ import Foundation
 
 // MARK: - WeatherResponse
 struct WeatherResponse: Codable {
-    let lat: Double
-    let lon: Double
-    let timezone: String
-    let timezone_offset: Int
-    let current: CurrentWeather
-    let alerts: [WeatherAlert]?
+    let coord: Coord
+    let weather: [Weather]
+    let main: Main
+    let id: Int
+    let name: String
 }
 
-// MARK: - CurrentWeather
-struct CurrentWeather: Codable {
-    let dt: Int
-    let sunrise: Int
-    let sunset: Int
+struct Coord: Codable {
+    let lon: Double
+    let lat: Double
+}
+
+struct Main: Codable {
     let temp: Double
     let feels_like: Double
+    let temp_min: Double
+    let temp_max: Double
     let pressure: Int
     let humidity: Int
-    let dew_point: Double
-    let uvi: Double
-    let clouds: Int
-    let visibility: Int
-    let wind_speed: Double
-    let wind_deg: Int
-    let wind_gust: Double?
-    let weather: [Weather]
+    let sea_level: Int
+    let grnd_level: Int
 }
 
 // MARK: - Weather
@@ -44,19 +40,11 @@ struct Weather: Codable, Identifiable {
     let icon: String
 }
 
-// MARK: - WeatherAlert
-struct WeatherAlert: Codable {
-    let sender_name: String
-    let event: String
-    let start: Int
-    let end: Int
-    let description: String
-    let tags: [String]
-}
 
 
 
 /*
  as mentioned, we call this api after receiving the lat and long for a specific place
- https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={minutely, hourly, daily, alerts}&appid={API key}
+ 
+ https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
 */

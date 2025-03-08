@@ -12,7 +12,7 @@ var weatherResponseArr: [WeatherResponse] = []
 
 func loadWeatherResponse() {
     if let tempResponseArr: [WeatherResponse] = decodeJsonIntoStruct(
-        fullFilename: "weatherResponseData.json", fileLocation: "Main Bundle")
+        fullFilename: "sampleData.json", fileLocation: "Main Bundle")
     {
         weatherResponseArr = tempResponseArr
     } else {

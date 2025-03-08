@@ -22,7 +22,7 @@
 			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
 			buildPhase = 991B6EB72D7B5F35002520DB /* Sources */;
 			membershipExceptions = (
-				Data/weatherResponseData.json,
+				Data/sampleData.json,
 			);
 		};
 /* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */

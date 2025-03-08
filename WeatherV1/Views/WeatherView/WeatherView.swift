@@ -10,122 +10,79 @@ import SwiftUI
 
 struct WeatherView: View {
 
-    let weatherStruct: WeatherResponse
+    let weatherStruct: WeatherResponse?
 
-    @State private var showSearch = false
-    @State private var query: String = ""
-    @State private var selectedCity: String = ""
+    @Binding var query: String
+    @Binding var selectedCity: String
+    @Binding var errMessage: String
+
+    @State private var showSearch: Bool = false
 
     var body: some View {
+
         VStack(alignment: .center) {
-            
-            // Display Timezone Instead of ID (since `id` is not in the API response)
-            Text(weatherStruct.timezone)
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-            
-           
-            
-            Spacer()
-            
-            Text(selectedCity).opacity(selectedCity.isEmpty ? 0 : 1)
-                .font(.title)
-                .foregroundStyle(.primary)
-            
-            VStack(spacing: 16) {
-                
-                // Weather Condition Image & City Name
-                Image(systemName: iconName(for: weatherStruct.current.weather.first?.main ?? ""))
+            if let weather: WeatherResponse = weatherStruct {
+                Text(weather.id.description)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Text(selectedCity).opacity(selectedCity.isEmpty ? 0 : 1)
+                    .font(.title)
+                    .foregroundStyle(.primary)
+                VStack(spacing: 16) {
+                    // Weather Condition Icon
+                    Image(
+                        systemName: iconName(
+                            for: weather.weather.first?.main ?? "")
+                    )
                     .resizable()
                     .scaledToFit()
                     .frame(width: 100, height: 100)
 
-                Text("\(kelvinToCelsius(weatherStruct.current.temp), specifier: "%.1f") °C")
+                    Text(
+                        "\(kelvinToCelsius(weather.main.temp), specifier: "%.1f") °C"
+                    )
                     .font(.system(size: 40))
                     .bold()
 
-                Text(weatherStruct.current.weather.first?.description.capitalized ?? "Unknown")
+                    Text(
+                        weather.weather.first?.description.capitalized
+                            ?? "Unknown"
+                    )
                     .font(.title3)
                     .foregroundStyle(.secondary)
 
-                // Additional Weather Info
-                HStack(spacing: 24) {
-                    VStack {
-                        Text("🌡️ Feels Like")
-                        Text("\(kelvinToCelsius(weatherStruct.current.feels_like), specifier: "%.1f") °C")
-                            .bold()
-                    }
+                    // Additional Weather Info
+                    HStack(spacing: 24) {
+                        WeatherInfoView(
+                            title: "🌡️ Feels Like",
+                            value: "\(String(format: "%.1f", kelvinToCelsius(weather.main.feels_like))) °C"
+
+                        )
+                        WeatherInfoView(
+                            title: "🗺️ Coordinates",
+                            value: "X: \(weather.coord.lat) Y: \(weather.coord.lon)")
+                        WeatherInfoView(
+                            title: "💧 Humidity",
+                            value: "\(weather.main.humidity)%")
                     
-              
-
-                    VStack {
-                        Text("💨 Wind")
-                        Text("\(weatherStruct.current.wind_speed, specifier: "%.1f") m/s")
-                            .bold()
                     }
-            
-
-                    VStack {
-                        Text("💧 Humidity")
-                        Text("\(weatherStruct.current.humidity)%")
-                            .bold()
-                    }
+                    .padding(.top, 8)
                 }
-                .padding(.top, 8)
-                
-                
+                .padding()
 
-                // Sunrise & Sunset
-                HStack(spacing: 40) {
-                    VStack {
-                        Text("🌅 Sunrise")
-                        Text(formatTime(weatherStruct.current.sunrise))
-                            .bold()
-                    }
+            } else {
 
-                    VStack {
-                        Text("🌇 Sunset")
-                        Text(formatTime(weatherStruct.current.sunset))
-                            .bold()
-                    }
-                }
-                .padding(.top, 8)
+                Text(errMessage)
+                    .font(.title2)
+                    .foregroundStyle(.primary)
+                    .bold()
+
             }
-            .padding()
-            
-            // Search Button
-            Button(action: {
-                showSearch = true
-            }) {
-                Text("Search for new city")
-            }
-            .opacity(showSearch ? 0.0 : 1.0)
-            .padding(.vertical)
 
             Spacer()
         }
-        .padding()
-        .sheet(isPresented: $showSearch) {
-            HStack {
-                TextField("Enter city name...", text: $query)
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(10)
-                    .textInputAutocapitalization(.words)
-                    .onSubmit {
-                        // if something is valid, then set the selected city
-                        selectedCity = query
-                        query = ""
-                        showSearch = false
-                        
-                        
-                        
-                    }
-            }
-            .padding(.horizontal)
-            .presentationDetents([.height(100)])  // Small bottom sheet
-            .presentationDragIndicator(.visible)
-        }
+
     }
 
     // Convert Kelvin to Celsius
@@ -156,6 +113,25 @@ struct WeatherView: View {
     }
 }
 
+struct WeatherInfoView: View {
+    let title: String
+    let value: String
+    
+    var body: some View {
+        VStack {
+            Text(title)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            Text(value)
+                .font(.headline)
+                .bold()
+        }
+    }
+}
+
+
 #Preview {
-    WeatherView(weatherStruct: weatherResponseArr[0])
+    WeatherView(
+        weatherStruct: weatherResponseArr[0], query: .constant(""),
+        selectedCity: .constant(""), errMessage: .constant("City not found"))
 }
