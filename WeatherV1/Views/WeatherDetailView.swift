@@ -2,7 +2,7 @@
 //  WeatherDetailView.swift
 //  WeatherV1
 //
-//  Created by Tise on 3/8/25.
+//  Created by Michael-Andre Odusami on 3/8/25.
 //  Copyright © 2025 Michael-Andre Odusami. All rights reserved.
 //
 
@@ -143,19 +143,5 @@ struct WeatherDetailView: View {
         }.resume()
     }
 
-    func dateString(from timestamp: Int) -> String {
-        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        return formatter.string(from: date)
-    }
 }
 
-//#Preview {
-//    WeatherDetailView(
-//        coordinate: CLLocationCoordinate2D(
-//            latitude: 37.7749, longitude: -122.4194),
-//        cityName: "San Francisco",
-//        weather: sampleWeatherResponse
-//    )
-//}

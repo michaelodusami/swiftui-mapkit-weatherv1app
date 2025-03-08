@@ -3,7 +3,7 @@ import MapKit
 //  LocationSearchView.swift
 //  WeatherV1
 //
-//  Created by Tise on 3/8/25.
+//  Created by Michael-Andre Odusami on 3/8/25.
 //  Copyright © 2025 Michael-Andre Odusami. All rights reserved.
 //
 import SwiftUI
