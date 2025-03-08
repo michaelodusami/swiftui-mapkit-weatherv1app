@@ -10,30 +10,9 @@
 		991B6EBB2D7B5F35002520DB /* WeatherV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		991B6EE12D7B6531002520DB /* Exceptions for "WeatherV1" folder in "Copy Bundle Resources" phase from "WeatherV1" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = 991B6EB92D7B5F35002520DB /* Resources */;
-			membershipExceptions = (
-				Helpers/DecodeJson.swift,
-			);
-		};
-		991B6EE92D7B66C4002520DB /* Exceptions for "WeatherV1" folder in "Compile Sources" phase from "WeatherV1" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = 991B6EB72D7B5F35002520DB /* Sources */;
-			membershipExceptions = (
-				Data/sampleData.json,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		991B6EBD2D7B5F35002520DB /* WeatherV1 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				991B6EE92D7B66C4002520DB /* Exceptions for "WeatherV1" folder in "Compile Sources" phase from "WeatherV1" target */,
-				991B6EE12D7B6531002520DB /* Exceptions for "WeatherV1" folder in "Copy Bundle Resources" phase from "WeatherV1" target */,
-			);
 			path = WeatherV1;
 			sourceTree = "<group>";
 		};
