@@ -1,6 +1,4 @@
-Here's an updated **README.md** including the **image paths** so they are correctly displayed in GitHub (or any markdown viewer that supports images).
 
----
 
 # WeatherV1
 
