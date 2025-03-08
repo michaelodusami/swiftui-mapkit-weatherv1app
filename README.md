@@ -109,13 +109,6 @@ cd WeatherV1
 
 ---
 
-## **Requirements**
-- **Xcode 14+** or **Xcode 15+** (for iOS 16+ or iOS 17 development)
-- **Swift 5.7+**
-- **iOS 16+** (if using newer `NavigationStack` and `.navigationDestination`)
-- **iOS 17** (if using the latest `Map` initializer with content builder)
-
----
 
 ## **Contributing**
 1. Fork the repository  
