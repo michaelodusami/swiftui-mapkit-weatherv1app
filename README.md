@@ -105,7 +105,7 @@ cd WeatherV1
 ![Virginia Tech Weather](VirginiaTechWeatherImg.png)
 
 ### **Video Walkthrough**
-🎥 [Watch the demo]()
+🎥 [Watch the demo](https://youtube.com/shorts/vdmZ3Rh400U?si=IdCfOeTncndbmC9Y)
 
 ---
 
